@@ -4,29 +4,32 @@ export default class CommonFunction {
     
     async comparePassword(password: string, userPassword: string){
         try{
-            let matchPassword:boolean = await bcrypt.compare(password, userPassword);
+            const matchPassword:boolean = await bcrypt.compare(password, userPassword);
             return matchPassword;
         }catch(e){
             console.log(e);
+            throw e;
         }
     }
     async generateToken(id: string, role: string){
         try{
             const secret:string = process.env.JWT_SECRET;
-            let token:string = await jwt.sign({ id:id, role: role }, secret, {
+            const token:string = await jwt.sign({ id:id, role: role }, secret, {
                 expiresIn: '2h'
               });
             return token;
         }catch(e){
             console.log(e);
+            throw e;
         }
     }
     async hashPassword(password: string){
         try{
-            let hashPw:string = await bcrypt.hash(password,10);
+            const hashPw:string = await bcrypt.hash(password,10);
             return hashPw;
         }catch(e){
             console.log(e);
+            throw e;
         }
     }
     async getTimStamp(){
@@ -36,7 +39,7 @@ export default class CommonFunction {
             return time;
         }catch(e){
             console.log(e);
-            return 0;
+            throw e;
         }
     }
 }

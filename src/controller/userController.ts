@@ -43,18 +43,18 @@ export default class userController {
         }
 
         try{
-            let user:any = await storeUser.createUser(userAttributes);
+            const user:IUser = await storeUser.createUser(userAttributes);
             console.log(user);
             if(user){
                 await tempStore.deleteRecord(userAttributes.email);
             }
-            if(ErrorMessageEnum.USER_EXIST == user){
-                return SendResponse(
-                    res,
-                    ErrorMessageEnum.USER_EXIST,
-                    StatusCodeEnum.BAD_REQUEST
-                );
-            }
+            // if(ErrorMessageEnum.USER_EXIST == user){
+            //     return SendResponse(
+            //         res,
+            //         ErrorMessageEnum.USER_EXIST,
+            //         StatusCodeEnum.BAD_REQUEST
+            //     );
+            // }
             const responseData:IUserResposeData = {
                 _id: user._id,
                 name:user.first_name+' '+user.last_name
@@ -102,7 +102,7 @@ export default class userController {
             }
                 
             const token:string = await commonFun.generateToken(user._id, user.role);
-            let data:object = {
+            const data:object = {
                 "token" : token,
                 "msg" : ErrorMessageEnum.LOGGED_IN
             }
@@ -175,7 +175,7 @@ export default class userController {
                     StatusCodeEnum.BAD_REQUEST
                 );
             }
-            let otp:string = (""+Math.random()).substring(2,7);
+            const otp:string = (""+Math.random()).substring(2,7);
             emailService.sendMailToUser(email, otp);
             
             const d:Date = new Date();
@@ -205,7 +205,7 @@ export default class userController {
         }
         const { email,otp } = params.value;
         
-        const time:any = commonFun.getTimStamp();
+        const time:Promise<number> = commonFun.getTimStamp();
         const compareAttributes:ITemp = {
                                             email: email,
                                             otp: otp,
@@ -231,7 +231,7 @@ export default class userController {
                 if(compareAttributes.otp != record.otp){
                     return SendResponse(res, ErrorMessageEnum.INVALID_OTP, StatusCodeEnum.BAD_REQUEST);
                 }
-                let user: any = await storeUser.createUser(userAttributes);
+                const user: IUser = await storeUser.createUser(userAttributes);
                 if(user){
                     await tempStore.deleteRecord(userAttributes.email);
                 }
@@ -267,12 +267,11 @@ export default class userController {
             password: hashPw,
             role: Roles.User,
         }
-        var conditions: object = {
+        const conditions: object = {
             _id : _id 
            }
         try{
-            let user: IUser;
-            user = await storeUser.updateUser(conditions, userAttributes);
+            const user: IUser = await storeUser.updateUser(conditions, userAttributes);
             if(user){
                 await tempStore.deleteRecord(userAttributes.email);
             }
