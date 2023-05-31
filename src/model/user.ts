@@ -1,7 +1,7 @@
-import mongoose, { model } from 'mongoose'
-import userInterface from '../interface/IUser'
-import { nanoid } from 'nanoid'
-export const schema = mongoose.Schema
+import mongoose, { model } from 'mongoose';
+import userInterface from '../interface/IUser';
+import { nanoid } from 'nanoid';
+export const schema = mongoose.Schema;
 
 const userSchema = new schema<userInterface>({
   _id: {
@@ -33,6 +33,6 @@ const userSchema = new schema<userInterface>({
     type: String,
     required: true
   }
-})
+});
 
-export const userModel = model('users', userSchema)
+export const userModel = model('users', userSchema);

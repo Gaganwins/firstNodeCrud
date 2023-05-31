@@ -1,7 +1,7 @@
-import mongoose, { model } from 'mongoose'
-import ITemp from '../interface/ITemp'
-import { nanoid } from 'nanoid'
-export const schema = mongoose.Schema
+import mongoose, { model } from 'mongoose';
+import ITemp from '../interface/ITemp';
+import { nanoid } from 'nanoid';
+export const schema = mongoose.Schema;
 
 const tempSchema = new schema<ITemp>({
   _id: {
@@ -24,6 +24,6 @@ const tempSchema = new schema<ITemp>({
     required: true,
     default: null
   }
-})
+});
 
-export const tempModel = model('temps', tempSchema)
+export const tempModel = model('temps', tempSchema);

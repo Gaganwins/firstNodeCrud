@@ -16,4 +16,4 @@ enum ErrorMessageEnum {
   OTP_MATCH = 'OTP match',
   USER_UPDATE = 'User has been updated'
 }
-export default ErrorMessageEnum
+export default ErrorMessageEnum;

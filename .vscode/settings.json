@@ -1,0 +1,13 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "debug.onTaskErrors": "debugAnyway",
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "debug.javascript.autoAttachFilter": "smart",
+    "tabnine.experimentalAutoImports": true
+  }
+  

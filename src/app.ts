@@ -1,18 +1,18 @@
-import express, { Application } from 'express'
-import { connect } from 'mongoose'
-import route from './routes/index'
-import { MONGODB_URL } from './env'
+import express, { Application } from 'express';
+import { connect } from 'mongoose';
+import route from './routes/index';
+import { MONGODB_URL } from './env';
 
 export default class App {
-  public app: Application
-  public port: number
+  public app: Application;
+  public port: number;
 
   constructor(port: number) {
-    this.app = express()
-    this.port = port
-    this.connectToRoute()
-    this.connectToMongo()
-    this.staticAssests()
+    this.app = express();
+    this.port = port;
+    this.connectToRoute();
+    this.connectToMongo();
+    this.staticAssests();
   }
 
   private connectToMongo() {
@@ -25,29 +25,29 @@ export default class App {
       useUnifiedTopology: true,
       useNewUrlParser: true,
       autoIndex: true //make this also true
-    }
+    };
     connect(MONGODB_URL, options)
       .then(() => {
-        console.log('info->', 'Connected to mongodb')
+        console.log('info->', 'Connected to mongodb');
       })
       .catch((e) => {
-        console.log('info', 'there is some error in mongodb connection')
-        console.log(e)
-      })
+        console.log('info', 'there is some error in mongodb connection');
+        console.log(e);
+      });
   }
 
   private connectToRoute() {
-    this.app.use(express.json())
-    this.app.use(route)
+    this.app.use(express.json());
+    this.app.use(route);
   }
 
   private staticAssests() {
-    this.app.use(express.static('public'))
+    this.app.use(express.static('public'));
   }
 
   public listen() {
     this.app.listen(this.port, function () {
-      console.log(`App listning on port ${this.port}`)
-    })
+      console.log(`App listning on port ${this.port}`);
+    });
   }
 }

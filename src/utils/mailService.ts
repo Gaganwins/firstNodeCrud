@@ -1,6 +1,6 @@
-import { SENDER_MAIL_ID } from '../env'
+import { SENDER_MAIL_ID } from '../env';
 /* eslint-disable @typescript-eslint/no-var-requires */
-const sendmail = require('sendmail')()
+const sendmail = require('sendmail')();
 
 export default class MailService {
   //SEND MAIL
@@ -15,12 +15,12 @@ export default class MailService {
         },
         function (err) {
           if (err) {
-            reject(false)
+            reject(false);
           } else {
-            resolve(otp)
+            resolve(otp);
           }
         }
-      )
-    })
+      );
+    });
   }
 }
