@@ -1,38 +1,39 @@
-import mongoose, { model } from 'mongoose';
-import userInterface from '../interface/IUser';
-import { nanoid } from 'nanoid';
-export const schema = mongoose.Schema;
+import mongoose, { model } from 'mongoose'
+import { nanoid } from 'nanoid'
+import userInterface from '../interface/IUser'
 
-const userSchema = new schema<userInterface>({
+export const { Schema } = mongoose
+
+const userSchema = new Schema<userInterface>({
   _id: {
     type: String,
     required: false,
-    default: () => nanoid()
+    default: () => nanoid(),
   },
   first_name: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
   last_name: {
     type: String,
     required: false,
-    default: null
+    default: null,
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
     required: false,
-    select: false
+    // select: false,
   },
   role: {
     type: String,
-    required: true
-  }
-});
+    required: true,
+  },
+})
 
-export const userModel = model('users', userSchema);
+export const userModel = model('users', userSchema)

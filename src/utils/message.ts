@@ -14,6 +14,6 @@ enum ErrorMessageEnum {
   PSSWORD_UPDATE = 'Password updated',
   SENT_MAIL = 'mail has been sent on your email address',
   OTP_MATCH = 'OTP match',
-  USER_UPDATE = 'User has been updated'
+  USER_UPDATE = 'User has been updated',
 }
-export default ErrorMessageEnum;
+export default ErrorMessageEnum

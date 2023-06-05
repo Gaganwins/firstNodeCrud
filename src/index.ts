@@ -1,6 +1,6 @@
-import App from './app';
-import { PORT } from './env';
+import App from './app'
+import { PORT } from './env'
 
-const port: number = PORT || 3000;
+const port: number = PORT || 3000
 
-new App(port).listen();
+new App(port).listen()

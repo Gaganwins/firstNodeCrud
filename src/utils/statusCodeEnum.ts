@@ -7,7 +7,7 @@ enum StatusCodeEnum {
   NOT_FOUND = 404,
   UNPROCESSABLE_ENTITY = 422,
   INTERNAL_SERVER_ERROR = 500,
-  GATEWAY_TIMEOUT = 504
+  GATEWAY_TIMEOUT = 504,
 }
 
-export default StatusCodeEnum;
+export default StatusCodeEnum

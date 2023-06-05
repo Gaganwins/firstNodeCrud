@@ -1,29 +1,37 @@
-import ITemp from '../interface/ITemp';
-import { tempModel } from '../model/temp';
+import ITemp from '../interface/ITemp'
+import { tempModel } from '../model/temp'
+
 export default class tempStore {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  public model: any
+
+  constructor(model = tempModel) {
+    this.model = model
+  }
+
   async createTempRecord(attributes: ITemp) {
-    let record: ITemp;
     try {
-      record = await tempModel.create(attributes);
-      return record;
+      const record: ITemp = await this.model.create(attributes)
+      return record
     } catch (e) {
-      console.log(e);
+      throw e
     }
   }
 
   async compareOTP(email: string) {
     try {
-      const user: ITemp = await tempModel.findOne({ email });
-      return user;
+      const user: ITemp = await this.model.findOne({ email })
+      return user
     } catch (e) {
-      console.log(e);
+      throw e
     }
   }
+
   async deleteRecord(email: string) {
     try {
-      return await tempModel.findOneAndDelete({ email });
+      return await this.model.findOneAndDelete({ email })
     } catch (e) {
-      console.log(e);
+      throw e
     }
   }
 }

@@ -1,44 +1,57 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 export default class CommonFunction {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  public bcrypt: any
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  public jwt: any
+
+  public date: Date
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  constructor(bcrypt: any, jwt: any) {
+    this.bcrypt = bcrypt
+    this.jwt = jwt
+    this.date = new Date()
+  }
+
   async comparePassword(password: string, userPassword: string) {
     try {
-      const matchPassword: boolean = await bcrypt.compare(password, userPassword);
-      return matchPassword;
+      const matchPassword: boolean = await this.bcrypt.compare(password, userPassword)
+      return matchPassword
     } catch (e) {
-      console.log(e);
-      throw e;
+      console.log(e)
+      throw e
     }
   }
+
   async generateToken(id: string, role: string) {
     try {
-      const secret: string = process.env.JWT_SECRET;
-      const token: string = await jwt.sign({ id: id, role: role }, secret, {
-        expiresIn: '2h'
-      });
-      return token;
+      const secret: string = process.env.JWT_SECRET
+      const token: string = await this.jwt.sign({ id, role }, secret, {
+        expiresIn: '2h',
+      })
+      return token
     } catch (e) {
-      console.log(e);
-      throw e;
+      console.log(e)
+      throw e
     }
   }
+
   async hashPassword(password: string) {
     try {
-      const hashPw: string = await bcrypt.hash(password, 10);
-      return hashPw;
+      const hashPw: string = await this.bcrypt.hash(password, 10)
+      return hashPw
     } catch (e) {
-      console.log(e);
-      throw e;
+      throw e
     }
   }
+
   async getTimStamp() {
     try {
-      const d: Date = new Date();
-      const time: number = d.getTime();
-      return time;
+      const time: number = this.date.getTime()
+      return time
     } catch (e) {
-      console.log(e);
-      throw e;
+      throw e
     }
   }
 }

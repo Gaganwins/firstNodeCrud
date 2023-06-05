@@ -1,29 +1,30 @@
-import mongoose, { model } from 'mongoose';
-import ITemp from '../interface/ITemp';
-import { nanoid } from 'nanoid';
-export const schema = mongoose.Schema;
+import mongoose, { model } from 'mongoose'
+import { nanoid } from 'nanoid'
+import ITemp from '../interface/ITemp'
 
-const tempSchema = new schema<ITemp>({
+export const { Schema } = mongoose
+
+const tempSchema = new Schema<ITemp>({
   _id: {
     type: String,
     required: false,
-    default: () => nanoid()
+    default: () => nanoid(),
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   otp: {
     type: String,
     required: true,
-    default: null
+    default: null,
   },
   entry_time: {
     type: String,
     required: true,
-    default: null
-  }
-});
+    default: null,
+  },
+})
 
-export const tempModel = model('temps', tempSchema);
+export const tempModel = model('temps', tempSchema)

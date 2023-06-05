@@ -1,11 +1,12 @@
-import { Router } from 'express';
+import { Router } from 'express'
 
-import userRouter from './userRoutes';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import * as dotenv from 'dotenv'
+import userRouter from './userRoutes'
 
-const router: Router = Router();
+dotenv.config()
 
-router.use(process.env.API_BASE_URL + '/user', userRouter);
+const router: Router = Router()
 
-export default router;
+router.use(`${process.env.API_BASE_URL}/user`, userRouter)
+
+export default router
