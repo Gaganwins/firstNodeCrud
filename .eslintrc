@@ -1,22 +1,59 @@
 {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-    ],
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "import"],
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
-    "rules": {
-        // "@typescript-eslint/no-explicit-any": "off"
-        "prettier/prettier": "error"
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+
+        // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
+
+        // use a glob pattern
+        // "project": "packages/*/tsconfig.json"
+
+        // // use an array of glob patterns
+        "project": ["packages/*/tsconfig.json", "other-packages/*/tsconfig.json"]
+      }
     }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "airbnb"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    // "@typescript-eslint/no-explicit-any": "off",
+    "no-console": "off",
+    "no-useless-catch": "off",
+    "object-curly-newline": "off",
+    "max-len": "off",
+    "camelcase": "off",
+    "no-underscore-dangle": "off",
+    "semi": [2, "never"],
+    "no-shadow": "off",
+    "no-unused-vars": "off",
+    "prettier/prettier": "error",
+    "import/no-unresolved": "error",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+    // "import/no-unresolved": [2, { "caseSensitive": false }]
+  }
 }
